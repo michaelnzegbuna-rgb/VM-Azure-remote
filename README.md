@@ -88,6 +88,60 @@ This prevents unauthorized scanning and brute-force attacks from malicious actor
 
 ## Project Files
 
+
+Here's a clear explanation of that improvement point:
+
+---
+
+
+### 1. The Concept of Bastion
+
+Right now, the README explains *how to use* Bastion step by step, but a reader who has never heard of it needs to understand *what it is* conceptually before the steps make sense.
+
+The concept to communicate is this: normally, to connect to a VM remotely you need two things — a public IP address on the VM (so the internet can find it) and an open port like 3389 or 22 (so traffic can reach it). Azure Bastion replaces both of those requirements. Instead of your laptop connecting directly to the VM, your browser connects to the Azure Portal over HTTPS, and Bastion — a Microsoft-managed service sitting inside your Virtual Network — makes the final hop to the VM privately. The VM never has to be reachable from the internet at all.
+
+---
+
+### 2. Cost Implications
+
+This matters because Bastion is **not free**, and a reader deploying it without knowing that will get a surprise bill. The documentation should be honest that:
+
+- Bastion charges per deployment hour even when nobody is actively connected
+- There are two SKUs (Basic and Standard) with different price points
+- For a lab or student environment, the right advice is to **deploy Bastion only when you need it and delete it when you are done** — unlike the VMs themselves, Bastion has no "stopped" state that pauses billing; it bills as long as it exists
+
+Without this explanation, someone might leave Bastion running for a month on a free-tier account and wonder why they have a bill.
+
+---
+
+### 3. How It Enables Removal of Public IPs
+
+This is the most important security point and the one most likely to be glossed over. The documentation should make explicit that Bastion is not just an *alternative* way to connect — it is what **allows you to take the final hardening step** of removing the VM's public IP entirely.
+
+The progression looks like this:
+
+```
+Stage 1 — Basic setup
+VM has a public IP + port 3389/22 open to everyone (*) 
+→ Any internet scanner can attempt to connect
+
+Stage 2 — NSG restriction (what this project does)
+VM has a public IP + port 3389/22 open to one specific IP
+→ Better, but the port is still visible and the public IP still exists
+
+Stage 3 — Bastion deployed, public IP and ports removed
+VM has no public IP + no open management ports
+→ There is nothing on the internet for an attacker to target
+```
+
+The key insight is that Stage 2 (what the scripts in this project implement) still leaves the VM *findable* on the internet. A port scanner can still see port 3389 is open; it just cannot get past the NSG rule. Stage 3 with Bastion means the VM is genuinely invisible to the internet — no IP, no port, nothing to discover.
+
+---
+
+### Why This Section Matters for the README
+
+Without this explanation, a reader might look at the Bastion deployment steps and think: *"this seems like extra work just to connect differently — why bother?"* The documentation section answers that question. It turns a list of steps into a coherent security argument: Bastion is not just a convenience feature, it is the tool that lets you eliminate the last remaining public attack surface on your VMs.
+
 | File | Description |
 |------|-------------|
 | `vm_setup.ps1` | Provisions the resource group, Linux VM, and Windows VM with open NSG rules for initial setup |
