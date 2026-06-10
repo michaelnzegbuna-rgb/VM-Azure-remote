@@ -78,7 +78,6 @@ This prevents unauthorized scanning and brute-force attacks from malicious actor
 ![RDP Connection to vm-windows-weu](screenshots/rdp_windows_connection.png)
 *Successful RDP session to `vm-windows-weu` at `20.229.20.124` using credentials `azureadmin`*
 
-<img width="1536" height="730" alt="ssh_linux_connection" src="https://github.com/user-attachments/assets/250b786a-9a99-4c1d-8b28-53f653ee1199" />
 
 ---
 
