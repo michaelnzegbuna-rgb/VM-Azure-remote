@@ -66,18 +66,22 @@ This prevents unauthorized scanning and brute-force attacks from malicious actor
 ### VM Inventory (Azure Portal)
 ![Azure Portal VM List](screenshots/vm_list_portal.png)
 *Both VMs running in West Europe on Standard_B2ts_v2*
+<img width="1536" height="730" alt="vm_list_portal" src="https://github.com/user-attachments/assets/24d3e97a-7790-4ad3-8fb8-0e8dc40eab1b" />
 
 ### Linux NSG — SSH Rule Restricted to Admin IP
 ![Linux NSG SSH Rule](screenshots/nsg_linux_ssh_rule.png)
 *Port 22 restricted to 197.211.52.179 only*
+<img width="1536" height="730" alt="nsg_linux_ssh_rule" src="https://github.com/user-attachments/assets/94ce60ad-ed76-40f8-86f3-928cb80b8ef5" />
 
 ### Windows NSG — RDP Rule Restricted to Admin IP
 ![Windows NSG RDP Rule](screenshots/nsg_windows_rdp_rule.png)
 *Port 3389 restricted to 197.211.52.179 only*
+<img width="1536" height="730" alt="nsg_windows_rdp_rule" src="https://github.com/user-attachments/assets/51569357-6e3c-46e5-b5b0-9aa98fee5a89" />
 
 ### RDP Connection to Windows VM
 ![RDP Connection to vm-windows-weu](screenshots/rdp_windows_connection.png)
 *Successful RDP session to `vm-windows-weu` at `20.229.20.124` using credentials `azureadmin`*
+<img width="1173" height="672" alt="rdp_windows_connection" src="https://github.com/user-attachments/assets/325c4c68-2757-4208-b379-55c2c165a922" />
 
 
 ---
