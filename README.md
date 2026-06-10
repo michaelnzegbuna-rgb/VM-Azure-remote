@@ -61,6 +61,7 @@ This prevents unauthorized scanning and brute-force attacks from malicious actor
 ### SSH Connection to Linux VM
 ![SSH Connection to vm-linux-weu](screenshots/ssh_linux_connection.png)
 *Successful SSH session — hostname `vm-linux-weu`, user `azureadmin`, Ubuntu 22.04 LTS*
+<img width="1536" height="730" alt="ssh_linux_connection" src="https://github.com/user-attachments/assets/5f8b45d5-5949-427d-b446-e88c6e90c138" />
 
 ### VM Inventory (Azure Portal)
 ![Azure Portal VM List](screenshots/vm_list_portal.png)
